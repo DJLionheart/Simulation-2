@@ -23,14 +23,9 @@ class Wizard extends Component {
 
     addHouse() {
         axios.post('/api/houses', { newHouse: this.state }).then( res => {
-            this.setState({
-                propertyname: '',
-                address: '',
-                city: '',
-                state: '',
-                zip: ''
-            })
-        })
+            //code below will take user back to dashboard, after promise fulfilled
+            window.location.href="/"
+        }).catch( err => console.log(err));
     }
 
 
@@ -58,7 +53,7 @@ class Wizard extends Component {
                     </form>
                 </div>
                 <div className="wizard-btn-box">
-                    <Link to="/"><button onClick={ () => this.addHouse() }>Complete</button></Link>
+                    <button onClick={ () => this.addHouse() }>Complete</button>
                 </div>
             
             </div>

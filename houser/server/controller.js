@@ -12,8 +12,18 @@ module.exports = {
         const { propertyname, address, city, state, zip } = req.body.newHouse;
         const db = req.app.get('db');
 
-        db.add_house( propertyname, address, city, state, zip ).then( () => {
-            res.sendStatus(200)
-        }).catch( err => console.log( err ));
+        db.add_house( propertyname, address, city, state, zip )
+            .then( () => { res.sendStatus(200)})
+            .catch( (err) => res.status(500).send(err)) 
+            //err => console.log( err ));
+    },
+
+    removeHouse: (req, res, next) => {
+        const { id } = req.params
+        const db = req.app.get('db');
+
+        db.delete_house( id )
+            .then( res.sendStatus(200))
+            .catch( (err) => res.status(500).send(err))
     }
 }
