@@ -52,8 +52,10 @@ export default function reducer(state = initialState, action) {
 
         case GET_FINANCIALS:
             return Object.assign({}, state, {financials: action.payload})
+            
+        default:
+            return state;
     }
-    return state;
 }
 
 
