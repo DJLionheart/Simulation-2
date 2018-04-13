@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
 class Wizard extends Component {
     constructor() {
         super();
         this.state = {
-            name: '',
+            propertyname: '',
             address: '',
             city: '',
             state: '',
@@ -20,10 +21,22 @@ class Wizard extends Component {
         })
     }
 
+    addHouse() {
+        axios.post('/api/houses', { newHouse: this.state }).then( res => {
+            this.setState({
+                propertyname: '',
+                address: '',
+                city: '',
+                state: '',
+                zip: ''
+            })
+        })
+    }
+
 
 
     render() {
-        const { name, address, city, state, zip } = this.state;
+        const { propertyname, address, city, state, zip } = this.state;
         return(
             <div>
                 <div className="wizard-header">
@@ -33,7 +46,7 @@ class Wizard extends Component {
                 <div className="wizard-form">
                     <form>
                         <label>Property Name</label>
-                        <input onChange={ evt => this.handleChange(evt) } name="name" value={ name }/>
+                        <input onChange={ evt => this.handleChange(evt) } name="propertyname" value={ propertyname }/>
                         <label>Address</label>
                         <input onChange={ evt => this.handleChange(evt) } name="address" value={ address }/>
                         <label>City</label>
@@ -45,7 +58,7 @@ class Wizard extends Component {
                     </form>
                 </div>
                 <div className="wizard-btn-box">
-
+                    <Link to="/"><button onClick={ () => this.addHouse() }>Complete</button></Link>
                 </div>
             
             </div>

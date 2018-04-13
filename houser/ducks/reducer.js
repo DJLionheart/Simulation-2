@@ -1,6 +1,6 @@
 
 const initialState = {
-    houses: []
+    houses: ['cool house', 'another cool house']
 }
 
 

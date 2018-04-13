@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+//import { connect } from 'react-redux'
+import { HashRouter } from 'react-router-dom';
 
 import './App.css';
 
@@ -12,14 +13,16 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        { routes }
+        <HashRouter>
+          { routes }
+        </HashRouter>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return state
-}
+// function mapStateToProps(state) {
+//   return state;
+// }
 
-export default connect(mapStateToProps)(App);
+export default App; //connect(mapStateToProps)(App);
