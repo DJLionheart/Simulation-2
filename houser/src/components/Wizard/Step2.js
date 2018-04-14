@@ -1,21 +1,31 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
+import { getImage } from '../../ducks/reducer'
 
-export default function Step2(props) {
+function Step2(props) {
     return(
         <div>
-        <div className="wizard-header">
-                    <h1>Add New Listing</h1>
-                    <Link to="/"><button>Cancel</button></Link>
-                </div>
-                <div className="wizard-form">
-                    <form>
-                        <input name="imageurl"/>
-                    </form>
-                </div>
-                <div className="wizard-btn-box">
-                    <button onClick={ () => this.addHouse() }>Complete</button>
-                </div>
+            <div className="wizard-form">
+                <form>
+                    <label>Image URL</label>
+                    <input name="imageurl"/>
+                </form>
+            </div>
+            <div className="wizard-btn-box">
+                <Link to="/wizard"><button>Previous Step</button></Link>
+                <Link to="/wizard/step3"><button>Next Step</button></Link>
+            </div>
         </div>
     )
 }
+
+function mapStateToProps(state) {
+    const { imageurl } = state;
+    return {
+        imageurl
+    }
+}
+
+export default connect(mapStateToProps, { getImage })(Step2)

@@ -1,41 +1,35 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
-import wizardRoutes from './wizardRoutes';
+import Step1 from './Step1';
+import Step2 from './Step2';
+import Step3 from './Step3';
+
+import { clearAll } from '../../ducks/reducer';
 
 class Wizard extends Component {
-    constructor() {
-        super();
-        this.state = {
-            propertyname: '',
-            address: '',
-            city: '',
-            state: '',
-            zip: ''
-        }
-    }
 
-    handleChange(evt) {
-        this.setState({
-            [evt.target.name]: evt.target.value
-        })
-    }
-
-    addHouse() {
-        axios.post('/api/houses', { newHouse: this.state }).then( res => {
-            //code below will take user back to dashboard, after promise fulfilled
-            window.location.href="/"
-        }).catch( err => console.log(err));
+    clearEntry() {
+        clearAll()
+        window.location.href="/";
     }
 
 
 
     render() {
-        const { propertyname, address, city, state, zip } = this.state;
         return(
             <div>
-               { wizardRoutes }
+                <div className="wizard-header">
+                    <h1>Add New Listing</h1>
+                    <button onClick={ () => this.clearEntry() }>Cancel</button>
+                </div>
+                <Switch>
+                    <Route exact path="/wizard/" component={ Step1 }/>
+                    <Route path="/wizard/step2" component={ Step2 }/>
+                    <Route path="/wizard/step3" render={ () => (<Step3 addHouse={ this.addHouse }/> )}/>
+                </Switch>
             </div>
         
         )
@@ -43,4 +37,8 @@ class Wizard extends Component {
     }
 }
 
-export default Wizard;
+function mapStateToProps(state) {
+    return state;
+}
+
+export default connect(mapStateToProps)(Wizard);
