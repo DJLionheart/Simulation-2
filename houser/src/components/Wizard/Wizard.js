@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Switch, Route } from 'react-router-dom';
-import axios from 'axios';
+import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Step1 from './Step1';

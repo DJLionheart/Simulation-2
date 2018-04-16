@@ -9,11 +9,12 @@ module.exports = {
     },
 
     addHouse: (req, res, next) => {
-        const { propertyname, address, city, state, zip } = req.body.newHouse;
+        const { propertyname, address, city, state, zip, imageurl, monthlymortgage, desiredrent } = req.body.newHouse;
         const db = req.app.get('db');
+        
 
-        db.add_house( propertyname, address, city, state, zip )
-            .then( () => { res.sendStatus(200)})
+        db.add_house( propertyname, address, city, state, zip, imageurl, monthlymortgage, desiredrent)
+            .then( (house) => { res.status(200).send(house)})
             .catch( (err) => res.status(500).send(err)) 
             //err => console.log( err ));
     },

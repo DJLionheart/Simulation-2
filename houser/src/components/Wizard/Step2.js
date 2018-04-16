@@ -5,12 +5,13 @@ import { connect } from 'react-redux';
 import { getImage } from '../../ducks/reducer'
 
 function Step2(props) {
+    const { imageurl } = props;
     return(
         <div>
             <div className="wizard-form">
                 <form>
                     <label>Image URL</label>
-                    <input name="imageurl"/>
+                    <input name="imageurl" onChange={ (e) => props.getImage(e.target.value) } value={ imageurl }/>
                 </form>
             </div>
             <div className="wizard-btn-box">
@@ -24,7 +25,7 @@ function Step2(props) {
 function mapStateToProps(state) {
     const { imageurl } = state;
     return {
-        imageurl
+        imageurl: imageurl
     }
 }
 
