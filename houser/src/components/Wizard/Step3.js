@@ -8,9 +8,6 @@ import { getMortgage, getRent } from '../../ducks/reducer'
 class Step3 extends Component {
 
     addHouse() {
-        console.log('====================================');
-        console.log(this.props.state);
-        console.log('====================================');
         axios.post('/api/houses', { newHouse: this.props.state }).then( res => {
             //code below will take user back to dashboard, after promise fulfilled
             window.location.href="/"

@@ -1,0 +1,21 @@
+.header {
+    display: flex;
+    align-items: center;
+    height: 75px;
+    width: 100vw;
+    background: #519872;
+}
+
+.header h1, h2, h3 {
+    color: white;
+    margin-left: 5px;
+
+}
+
+.header-content {
+    display: flex;
+    margin-left: 300px;
+}
+#white {
+    color: white
+}
