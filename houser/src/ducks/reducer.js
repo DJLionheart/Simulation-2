@@ -1,5 +1,6 @@
 
 const initialState = {
+    propertyDeets: {},
     propertyname: '',
     address: '',
     city: '',
@@ -10,7 +11,8 @@ const initialState = {
     desiredrent: 0,
 }
 
-const GET_PROPERTY = 'GET_PROPERTY',
+const GET_PROPERTY_DEETS = 'GET_PROPERTY_DEETS',
+      GET_PROPERTY = 'GET_PROPERTY',
       GET_ADDRESS = 'GET_ADDRESS',
       GET_CITY = 'GET_CITY',
       GET_STATE = 'GET_STATE',
@@ -22,6 +24,20 @@ const GET_PROPERTY = 'GET_PROPERTY',
     //   STEP_ONE = 'STEP_ONE',
     //   STEP_TWO = 'STEP_TWO',
     //   STEP_THREE = 'STEP_THREE';
+
+
+export function getPropertyDeets( propertyname, address, city, state, zip ) {
+    return {
+        type: GET_PROPERTY_DEETS,
+        payload: {
+            propertyname: propertyname,
+            address: address,
+            city: city,
+            state: state,
+            zip: zip
+        }
+    }
+}
 
 
 export function getProperty( propertyname ) {
@@ -112,6 +128,10 @@ export function clearAll() {
 
 export default function reducer(state = initialState, action) {
     switch( action.type ) {
+        case GET_PROPERTY_DEETS:
+            return Object.assign({}, state, {propertyDeets: action.payload})
+
+
         case GET_PROPERTY:
             return Object.assign({}, state, {propertyname: action.payload})
 
