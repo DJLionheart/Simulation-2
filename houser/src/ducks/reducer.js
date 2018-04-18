@@ -1,25 +1,27 @@
 
 const initialState = {
     propertyDeets: {},
-    propertyname: '',
-    address: '',
-    city: '',
-    state: '',
-    zip: 0,
+    // propertyname: '',
+    // address: '',
+    // city: '',
+    // state: '',
+    // zip: 0,
     imageurl: '',
-    monthlymortgage: 0,
-    desiredrent: 0,
+    financials: {}
+    // monthlymortgage: 0,
+    // desiredrent: 0,
 }
 
 const GET_PROPERTY_DEETS = 'GET_PROPERTY_DEETS',
-      GET_PROPERTY = 'GET_PROPERTY',
-      GET_ADDRESS = 'GET_ADDRESS',
-      GET_CITY = 'GET_CITY',
-      GET_STATE = 'GET_STATE',
-      GET_ZIP = 'GET_ZIP',
+    //   GET_PROPERTY = 'GET_PROPERTY',
+    //   GET_ADDRESS = 'GET_ADDRESS',
+    //   GET_CITY = 'GET_CITY',
+    //   GET_STATE = 'GET_STATE',
+    //   GET_ZIP = 'GET_ZIP',
       GET_IMAGE = 'GET_IMAGE',
-      GET_MORTGAGE = 'GET_MORTGAGE',
-      GET_RENT = 'GET_RENT',
+      GET_FINANCIALS = 'GET_FINANCIALS',
+    //   GET_MORTGAGE = 'GET_MORTGAGE',
+    //   GET_RENT = 'GET_RENT',
       CLEAR_ALL = 'CLEAR_ALL';
     //   STEP_ONE = 'STEP_ONE',
     //   STEP_TWO = 'STEP_TWO',
@@ -40,40 +42,40 @@ export function getPropertyDeets( propertyname, address, city, state, zip ) {
 }
 
 
-export function getProperty( propertyname ) {
-    return {
-        type: GET_PROPERTY,
-        payload: propertyname
-    }
-}
+// export function getProperty( propertyname ) {
+//     return {
+//         type: GET_PROPERTY,
+//         payload: propertyname
+//     }
+// }
 
-export function getAddress( address ) {
-    return {
-        type: GET_ADDRESS,
-        payload: address
-    }
-}
+// export function getAddress( address ) {
+//     return {
+//         type: GET_ADDRESS,
+//         payload: address
+//     }
+// }
 
-export function getCity( city ) {
-    return {
-        type: GET_CITY,
-        payload: city
-    }
-}
+// export function getCity( city ) {
+//     return {
+//         type: GET_CITY,
+//         payload: city
+//     }
+// }
 
-export function getState( state ) {
-    return {
-        type: GET_STATE,
-        payload: state
-    }
-}
+// export function getState( state ) {
+//     return {
+//         type: GET_STATE,
+//         payload: state
+//     }
+// }
 
-export function getZip( zip ) {
-    return {
-        type: GET_ZIP,
-        payload: zip
-    }
-}
+// export function getZip( zip ) {
+//     return {
+//         type: GET_ZIP,
+//         payload: zip
+//     }
+// }
 
 export function getImage( imageurl ) {
     return {
@@ -82,19 +84,28 @@ export function getImage( imageurl ) {
     }
 }
 
-export function getMortgage( monthlymortgage ) {
+export function getFinancials( monthlymortgage, desiredrent ) {
     return {
-        type: GET_MORTGAGE,
-        payload: monthlymortgage
+        type: GET_FINANCIALS,
+        payload: {
+            monthlymortgage: monthlymortgage,
+            desiredrent: desiredrent
+        }
     }
 }
+// export function getMortgage( monthlymortgage ) {
+//     return {
+//         type: GET_MORTGAGE,
+//         payload: monthlymortgage
+//     }
+// }
 
-export function getRent( desiredrent ) {
-    return {
-        type: GET_RENT,
-        payload: desiredrent
-    }
-}
+// export function getRent( desiredrent ) {
+//     return {
+//         type: GET_RENT,
+//         payload: desiredrent
+//     }
+// }
 
 export function clearAll() {
     return {
@@ -131,30 +142,32 @@ export default function reducer(state = initialState, action) {
         case GET_PROPERTY_DEETS:
             return Object.assign({}, state, {propertyDeets: action.payload})
 
+        // case GET_PROPERTY:
+        //     return Object.assign({}, state, {propertyname: action.payload})
 
-        case GET_PROPERTY:
-            return Object.assign({}, state, {propertyname: action.payload})
+        // case GET_ADDRESS:
+        //     return Object.assign({}, state, {address: action.payload})
 
-        case GET_ADDRESS:
-            return Object.assign({}, state, {address: action.payload})
+        // case GET_CITY:
+        //     return Object.assign({}, state, {city: action.payload})
 
-        case GET_CITY:
-            return Object.assign({}, state, {city: action.payload})
+        // case GET_STATE:
+        //     return Object.assign({}, state, {state: action.payload})
 
-        case GET_STATE:
-            return Object.assign({}, state, {state: action.payload})
-
-        case GET_ZIP:
-            return Object.assign({}, state, {zip: action.payload})
+        // case GET_ZIP:
+        //     return Object.assign({}, state, {zip: action.payload})
 
         case GET_IMAGE:
             return Object.assign({}, state, {imageurl: action.payload})
 
-        case GET_MORTGAGE:
-            return Object.assign({}, state, {monthlymortgage: action.payload})
+        case GET_FINANCIALS:
+            return Object.assign({}, state, {financials: action.payload})
+
+        // case GET_MORTGAGE:
+        //     return Object.assign({}, state, {monthlymortgage: action.payload})
             
-        case GET_RENT:
-            return Object.assign({}, state, {desiredrent: action.payload})
+        // case GET_RENT:
+        //     return Object.assign({}, state, {desiredrent: action.payload})
             
         case CLEAR_ALL:
             return Object.assign({}, state, initialState)

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { getProperty, getAddress, getCity, getState, getZip, getPropertyDeets } from '../../ducks/reducer';
+import { getPropertyDeets } from '../../ducks/reducer';
 
 
 class Step1 extends Component {
@@ -18,6 +18,7 @@ class Step1 extends Component {
             zip: props.propertyDeets.zip
         }
 
+        // Don't do it this way... Tried to do something like this on my first sim as well... :
         // this.props.step1completed
         //     ? this.state = {
         //         propertyname: this.props.propertyname,
@@ -102,4 +103,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { getProperty, getAddress, getCity, getState, getZip, getPropertyDeets })(Step1)
+export default connect(mapStateToProps, { getPropertyDeets })(Step1)
